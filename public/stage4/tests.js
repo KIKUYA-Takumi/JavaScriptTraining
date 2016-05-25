@@ -23,6 +23,10 @@ describe('ステージ4（意図通りにイベントを利用できる）', fun
       // });
       //
       // ここに上記のどちらかのコードを記述してください。
+      var element = document.getElementById('firebrick');
+      element.addEventListener('click',function() {
+      	element.textContent = Number(element.textContent) + 1;
+      	});
 
 
       var firebrick = document.getElementById('firebrick');
@@ -37,6 +41,10 @@ describe('ステージ4（意図通りにイベントを利用できる）', fun
     it('2 番の要素の click イベントで要素内の数字を 1 ずつ小さくできる', function() {
 
       // ここにコードを記述してください。
+      var element = document.getElementById('chocolate');
+      element.addEventListener('click',function() {
+      element.textContent = Number(element.textContent) - 1;
+      })
 
 
       var chocolate = document.getElementById('chocolate');
@@ -51,6 +59,12 @@ describe('ステージ4（意図通りにイベントを利用できる）', fun
     it('3 番の要素の click イベントで要素を 10 度ずつ回転できる', function() {
 
       // ここにコードを記述してください。
+      ver element = document.getElementsByClassName('mediumseagreen')[0];
+      var ang = 0;
+      element.addEventListener('click', function() {
+      ang += 10;
+      element.style.transform = 'rotate('+ ang + 'deg)';
+      });
 
 
       var mediumseagreen = document.querySelector('.mediumseagreen');
