@@ -59,11 +59,17 @@ describe('ステージ4（意図通りにイベントを利用できる）', fun
     it('3 番の要素の click イベントで要素を 10 度ずつ回転できる', function() {
 
       // ここにコードを記述してください。
-      ver element = document.getElementsByClassName('mediumseagreen')[0];
-      var ang = 0;
+     /* ver element = document.getElementsByClassName('mediumseagreen')[0];
+      var angleDegree = 0;
       element.addEventListener('click', function() {
-      ang += 10;
-      element.style.transform = 'rotate('+ ang + 'deg)';
+      angleDegree += 10;
+      element.style.transform = 'rotate( ' + angleDegree + 'deg)';
+      });*/
+      var element = document.getElementsByClassName('mediumseagreen')[0];
+      var angleDegree = 0;
+      element.addEventListener('click', function() {
+      angleDegree += 10;
+      element.style.transform = 'rotate( ' + angleDegree + 'deg)';
       });
 
 
@@ -81,6 +87,12 @@ describe('ステージ4（意図通りにイベントを利用できる）', fun
     it('4 番の要素を入力された角度に回転できる', function() {
 
       // ここにコードを記述してください。
+      var element = document.getElementsByClassName('turquoise')[0];
+      var input = element.getElementsByTagName('Input')[0];
+      input.addEventListener('change', function() {
+      var angleDegree = input.value;
+      element.style.transform = 'rotate('+ angleDegree + 'deg)';
+      });
 
 
       var turquoise = document.querySelector('.turquoise');
@@ -106,11 +118,13 @@ describe('ステージ4（意図通りにイベントを利用できる）', fun
       //
       // なお、expect(steelblue).to.be.null は上記のテストの要件を満たして
       // いないので、正解ではありません。
-
+	  
+	  document.addEventListener('DOMContentLoaded', function() {
       var steelblue = document.querySelector('.steelblue');
       expect(steelblue).to.have.property('textContent', '5 \uD83D\uDC33');
       done();
-    });
+      });
+  	});
   });
 });
 

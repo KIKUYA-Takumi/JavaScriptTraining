@@ -177,7 +177,7 @@ describe('ステージ1（意図した DOM 要素を取得できるようにな�
 
       // 'change me!' を書き換えてください。
       var element = 'change me!';
-      var element = document.querySelector('#chocolate');
+      var element = document.querySelector('.chocolate');
 
       expect(element).to.have.property(secret('vq'), secret('pubpbyngr'));
 

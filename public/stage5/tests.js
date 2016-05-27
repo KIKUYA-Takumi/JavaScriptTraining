@@ -8,6 +8,10 @@ describe('ステージ5（意図通りに非同期処理を利用できる）', 
       // チュートリアル
       //
       // ここに下記のコードを記述してください。
+      promise.then(function(msg){
+      	expect(msg).to.equal('resolved!');
+      	testDone();
+      });
       //
       // promise.then(function(msg) {
       //   expect(msg).to.equal('resolved!');
@@ -26,6 +30,10 @@ describe('ステージ5（意図通りに非同期処理を利用できる）', 
       // testDone();
 
       // ここにコードを記述してください。
+      promise.catch(function(msg) {
+      	expect(msg).to.equal('rejected!');
+      	testDone();
+      });
 
 
     });
@@ -39,6 +47,12 @@ describe('ステージ5（意図通りに非同期処理を利用できる）', 
 
       // 作成した promise を promise 変数に代入してください。
       var promise = 'change me!';
+      var promise3 = createWaitPromise(messageFragments[2],30);
+      var promise 	= Promise.all([
+      	promise1,
+      	promise2,
+      	promise3
+      	]);
 
 
       return expect(promise).to.eventually.deep.equal(messageFragments);
@@ -53,6 +67,11 @@ describe('ステージ5（意図通りに非同期処理を利用できる）', 
 
       // 作成した promise を promise 変数に代入してください。
       var promise = 'change me!';
+      var promise = Promise.race([
+      	promise1,
+      	promise2,
+      	promise3
+      	]);
 
 
       return expect(promise).to.eventually.equal(messageFragments[1]);
@@ -68,6 +87,9 @@ describe('ステージ5（意図通りに非同期処理を利用できる）', 
       // チュートリアル
       //
       // ここに下記のコードを記述してください。
+      var promisedFriends = fetch(api + username).then(function(res) {
+      	return res.json();
+      });
       //
       // var promisedFriends = fetch(api + username).then(function(res) {
       //   return res.json();
@@ -85,6 +107,10 @@ describe('ステージ5（意図通りに非同期処理を利用できる）', 
 
       // 作成した promise を promisedFriends 変数に代入してください。
       var promisedFriends = 'change me!';
+            var promisedFriends = 'change me!';
+      var promisedFriends = fetch(api + username).then(function(res){
+      	return res.json();
+
 
 
       return expect(promisedFriends).to.eventually.have.length(2)
@@ -95,14 +121,33 @@ describe('ステージ5（意図通りに非同期処理を利用できる）', 
     it('/api/friends API を使って Shen の友人の友人を取得できる', function() {
       var api = '/api/friends/';
       var username = 'Shen';
+      
+      function getFriends(usernameToFetch){
+      	return fetch(api + usernameToFetch)
+      	.then(function(response)){
+      	return esponse.json();
+      	});
+      }
+      
+      function flatMap(arrayOfArray){
+      	return arrayOfArray.reduce(function(flatArray,array) {
+      		return flatArray.oncat(array);
+      	},[]);
+      	
+      	var promisedFriends = getFriends(username)
+      	.then(function(friendsArray) {
+      	)
+      }
+      
 
       // 作成した promise を promisedFriends 変数に代入してください。
-      var promisedFriends = 'change me!';
+      });
 
 
       return expect(promisedFriends).to.eventually.have.length(1)
         .and.have.members(['TypeScript']);
     });
+    
 
 
     it.skip('/api/friends API を使って CoffeeScript の友人を再帰的に取得できる', function() {
